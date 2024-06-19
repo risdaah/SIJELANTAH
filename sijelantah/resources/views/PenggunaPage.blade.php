@@ -65,9 +65,9 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="card-body py-2">
-                                                        <h5 class="card-title mt-2 mb-1">Customer</h5>
+                                                        <h5 class="card-title mt-2 mb-1">Pengumpul</h5>
                                                         {{-- <p class="mb-2">{{Session::get('pengguna')['NAMA']}}</p> --}}
-                                                        <p class="mb-2">{{$nama}}</p>
+                                                        <p class="mb-2">{{session('pengguna')['NAMA']}}</p>
                                                     </div>
                                                 </div>
                                             </div>

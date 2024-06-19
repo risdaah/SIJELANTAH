@@ -51,25 +51,9 @@ Route::get('/set-new-password/{pengguna}', [ForgotPasswordController::class, 'se
 Route::post('/update-password/{pengguna}', [ForgotPasswordController::class, 'updatePassword'])->name('update-password');
 
 
-
-
-
-
-
-
-
-Route::middleware(['checksession'])->group(function () {
+Route::middleware(['checksessionAdmin'])->group(function () {
     Route::get('/AdminPage', function () {
         return view('AdminPage');
-    });
-    Route::get('/PenggunaPage', function () {
-        return view('PenggunaPage');
-    });
-    Route::get('/PengumpulPage', function () {
-        return view('PengumpulPage');
-    });
-    Route::get('/KeluarPengumpul', function () {
-        return view('LandingPage');
     });
     Route::get('/KeluarAdmin', function () {
         return view('LandingPage');
@@ -77,12 +61,6 @@ Route::middleware(['checksession'])->group(function () {
     Route::get('/LaporanPage', function () {
         return view('LaporanPage');
     });
-
-    Route::get('/ProfilPengguna', function () {
-        return view('ProfilPenggunaPage');
-    });
-
-
 
     //ROUTE ADMIN
     // Admin: Menampilkan data pengumpulan
@@ -115,9 +93,22 @@ Route::middleware(['checksession'])->group(function () {
     Route::get('/export/excel', [ExcelController::class, 'generateEXCELall'])->name('export.excel');
     // Route untuk download Excel berdasarkan bulan dan tahun
     Route::get('/generate-excel', [ExcelController::class, 'generateEXCELByMonthYear']);
+});
 
+Route::middleware(['checksession'])->group(function () {
 
-
+    Route::get('/PenggunaPage', function () {
+        return view('PenggunaPage');
+    });
+    Route::get('/PengumpulPage', function () {
+        return view('PengumpulPage');
+    });
+    Route::get('/KeluarPengumpul', function () {
+        return view('LandingPage');
+    });
+    Route::get('/ProfilPengguna', function () {
+        return view('ProfilPenggunaPage');
+    });
 
     // ROUTE PENGUMPUL
     // Pengumpul: Membuat Permintaan
@@ -134,12 +125,4 @@ Route::middleware(['checksession'])->group(function () {
 
     // Pengguna: Hapus Permintaan
     Route::delete('/hapus-permintaan/{id}', [PermintaanController::class, 'hapus_permintaan'])->name('hapus_permintaan');
-
-
-
-    // ROUTE MASTER
-    // Edit dan Delete Customer
-    Route::get('/EditDataCustomer/{id}/edit_customer', [PenggunaController::class, 'edit_customer'])->name('edit_customer');
-    Route::put('/customers/{id}', [PenggunaController::class, 'update_customer'])->name('customers.update');
-    Route::delete('/customer/delete/{id}', [PenggunaController::class, 'hapus_pengguna'])->name('customer.hapus');
 });

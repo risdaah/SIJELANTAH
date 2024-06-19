@@ -33,7 +33,7 @@
                         <p class="text-dark fs-5">Cari akun anda</p>
                     </div>
 
-                    <form method="POST" action="{{ route('process-forgot-password') }}">
+                    {{-- <form method="POST" action="{{ route('process-forgot-password') }}">
                         @csrf
                         <div class="mb-3">
                             <div class="input-group mb-3">
@@ -43,7 +43,21 @@
                                 <input type="text" class="form-control form-control-lg fs-6" placeholder="Username">
                             </div>
                         </div>                       
-                        <a href="pengguna.html" class="btn btn-success btn-lg w-100 mb-3 fw-bold">Cari</a>
+                        
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </form> --}}
+
+                    <form method="POST" action="{{ route('process-forgot-password') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class='bx bx-user' ></i>
+                                </span>
+                                <input type="text" class="form-control form-control-lg fs-6" name="USERNAME" placeholder="Username">
+                            </div>
+                        </div>   
+                        <button type="submit" class="btn btn-success btn-lg w-100 mb-3 fw-bold">Cari</button>
                     </form>
                 </div>
             </div>

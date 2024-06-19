@@ -6,20 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SiJelantah | Set Password</title>
-    <link rel="stylesheet" href="buatpass.css">
+    <link rel="stylesheet" href="../css/PasswordBaru.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" href="storage/img/tablogo.png" type="image/x-icon">
+    <link rel="icon" href="../storage/img/tablogo.png" type="image/x-icon">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg fixed-top bg-white">
         <div class="container-fluid">
             <div class="navbar-brand d-flex me-auto">
                 <img
-                  id="img"
-                  src="storage/img/logo.png"
-                  alt="Logo"
-                  class="mr-2"
+                    id="img"
+                    src="../storage/img/logo.png"
+                    alt="Logo"
+                    class="mr-2"
                 />          
                 <a href="/">SiJelantah</a>
             </div>
@@ -43,8 +44,7 @@
                                 <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Password Baru" required>
                             </div>
                         </div>                       
-                        {{-- <a href="pengguna.html" class="btn btn-success btn-lg w-100 mb-3 fw-bold">Simpan</a> --}}
-                        <a type="submit" class="btn btn-success btn-lg w-100 mb-3 fw-bold">Simpan</a>
+                        <button type="submit" class="btn btn-success btn-lg w-100 mb-3 fw-bold">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -52,7 +52,3 @@
     </div>    
 </body>
 </html>
-
-
-
-

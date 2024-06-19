@@ -73,7 +73,7 @@
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="card-body py-4">
-                                                                <h5 class="card-title">Total Anggota</h5>
+                                                                <h5 class="card-title">Total Pengumpul</h5>
                                                                 <p class="mb-2">{{ number_format($total_pengguna, 0, ',', '.') }}</p>
                                                             </div>
                                                         </div>
