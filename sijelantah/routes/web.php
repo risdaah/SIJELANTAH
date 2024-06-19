@@ -132,6 +132,10 @@ Route::middleware(['checksession'])->group(function () {
     // Pengguna: Dashboard
     Route::get('/PenggunaPage', [PengumpulanController::class, 'dashboard'])->name('pengguna.dashboard');
 
+    // Pengguna: Hapus Permintaan
+    Route::delete('/hapus-permintaan/{id}', [PermintaanController::class, 'hapus_permintaan'])->name('hapus_permintaan');
+
+
 
     // ROUTE MASTER
     // Edit dan Delete Customer

@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body py-4">
-                                        <h5 class="card-title mb-2 fw-bold">{{Session::get('pengguna')['NAMA']}}</h5>
+                                        <h5 class="card-title mb-2 fw-bold">{{session('pengguna')['NAMA']}}</h5>
                                         <p class="mb-2 fw-medium">Pengumpul</p>
                                     </div>
                                 </div>
@@ -75,19 +75,19 @@
                                 {{csrf_field()}}
                                 <div class="mb-3">
                                     <label for="NAMA" class="form-label">Nama Lengkap</label>
-                                    <input type="text" name="NAMA" id="NAMA" value="{{Session::get('pengguna')['NAMA']}}" class="form-control form-control-lg fs-6 p-2">
+                                    <input type="text" name="NAMA" id="NAMA" value="{{session('pengguna')['NAMA']}}" class="form-control form-control-lg fs-6 p-2">
                                 </div>
                                 <div class="mb-3">
                                     <label for="EMAIL" class="form-label">Email</label>
-                                    <input type="email" name="EMAIL" id="EMAIL" value="{{Session::get('pengguna')['EMAIL']}}" class="form-control form-control-lg fs-6 p-2">
+                                    <input type="email" name="EMAIL" id="EMAIL" value="{{session('pengguna')['EMAIL']}}" class="form-control form-control-lg fs-6 p-2">
                                 </div>                                 
                                 <div class="mb-3">
                                     <label for="ALAMAT" class="form-label">Alamat</label>
-                                    <input type="text"  name="ALAMAT" id="ALAMAT" value="{{Session::get('pengguna')['ALAMAT']}}" class="form-control form-control-lg fs-6 p-2">
+                                    <input type="text"  name="ALAMAT" id="ALAMAT" value="{{session('pengguna')['ALAMAT']}}" class="form-control form-control-lg fs-6 p-2">
                                 </div>
                                 <div class="mb-4">
                                     <label for="NO_TELP" class="form-label">Telepon</label>
-                                    <input type="tel" name="NO_TELP" id="NO_TELP" value="{{Session::get('pengguna')['NO_TELP']}}" class="form-control form-control-lg fs-6 p-2">
+                                    <input type="tel" name="NO_TELP" id="NO_TELP" value="{{session('pengguna')['NO_TELP']}}" class="form-control form-control-lg fs-6 p-2">
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                             <div class="col-12">
                                 <div class="card-service py-4 px-5">
                                     <h5 class="card-title-service mb-1 fw-bold">Tanggal Daftar:</h5>
-                                    <h5 class="card-sub-service mb-1 fw-bold">{{Session::get('pengguna')['TGL_DAFTAR']}}</h5>
+                                    <h5 class="card-sub-service mb-1 fw-bold">{{session('pengguna')['TGL_DAFTAR']}}</h5>
                                 </div>
                             </div>
                         </div>

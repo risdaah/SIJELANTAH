@@ -45,85 +45,116 @@
         <div class="main">           
             <nav class="navbar navbar-expand-lg d-flex px-4 py-2">   
                 <div class="container-fluid">
-                    {{-- <h3 class="mb-3 mt-3">Halo, {{Session::get('pengguna')['NAMA']}}</h3> --}}
-                    <h3 class="mb-3 mt-3">Halo, {{$nama}}</h3>
+                    <h3 class="mb-3 mt-3">Halo, {{session('pengguna')['NAMA']}}</h3>
                     <a href="{{ route('logoutuser.submit') }}" class="login-button mb-3 mt-3">Keluar</a>
                 </div>  
             </nav>
 
-                            <div class="container">
-                                <div class="table-container row mx-auto p-5">
-                                    <h4 class="table-tittle mb-4">Riwayat Pengumpulan</h4>
-                                    <table class="table text-center">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 75px;">No</th>
-                                                <th scope="col">Jumlah (Liter)</th>
-                                                <th scope="col">Tanggal Permintaan</th>
-                                                <th scope="col">Tanggal Pengumpulan</th>  
-                                                <th scope="col" style="width: 200px;">Status</th>                                           
-                                                <th scope="col">Insentif</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if(isset($permintaan) && $permintaan->isNotEmpty())
-                                                @foreach($permintaan as $index => $item)
-                                                    <tr>
-                                                        <td>{{ $permintaan->firstItem() + $index }}</td> <!-- Penomoran yang disesuaikan dengan pagination -->
-                                                        <td>{{ $item->JUMLAH_KIRIM ?? 'N/A' }}</td>
-                                                        <td>{{ $item->TGL_MINTA ?? 'N/A' }}</td>
-                                                        <td>{{ $item->TGL_KUMPUL ?? 'N/A' }}</td>
-                                                        <td>
-                                                            @if($item->STATUS_PERMINTAAN == 'Ditolak')
-                                                                <b class="text-danger">Ditolak</b>
-                                                            @else
-                                                                {{ $item->STATUS_PERMINTAAN ?? 'N/A' }}
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @if($item->STATUS_PERMINTAAN == 'Ditolak')
-                                                                <b class="text-danger">{{ $item->JUMLAH_INSENTIF ? 'Rp' . number_format($item->JUMLAH_INSENTIF, 2, ',', '.') : 'N/A' }}</b>
-                                                            @else
-                                                                {{ $item->JUMLAH_INSENTIF ? 'Rp' . number_format($item->JUMLAH_INSENTIF, 2, ',', '.') : 'N/A' }}
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+            <div class="container">
+                <div class="table-container row mx-auto p-5">
+                    <h4 class="table-tittle mb-4">Riwayat Pengumpulan</h4>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 75px;">No</th>
+                                <th scope="col">Jumlah (Liter)</th>
+                                <th scope="col">Tanggal Permintaan</th>
+                                <th scope="col">Tanggal Pengumpulan</th>  
+                                <th scope="col" style="width: 200px;">Status</th>                                           
+                                <th scope="col">Insentif</th>
+                                <th scope="col">Batalkan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(isset($permintaan) && $permintaan->isNotEmpty())
+                                @foreach($permintaan as $index => $item)
+                                    <tr>
+                                        <td>{{ $permintaan->firstItem() + $index }}</td>
+                                        <td>{{ $item->JUMLAH_KIRIM ?? 'N/A' }}</td>
+                                        <td>{{ $item->TGL_MINTA ?? 'N/A' }}</td>
+                                        <td>{{ $item->TGL_KUMPUL ?? 'N/A' }}</td>
+                                        <td>
+                                            @if($item->STATUS_PERMINTAAN == 'Ditolak')
+                                                <b class="text-danger">Ditolak</b>
                                             @else
-                                                <tr>
-                                                    <td colspan="6">Tidak ada riwayat permintaan</td>
-                                                </tr>
+                                                {{ $item->STATUS_PERMINTAAN ?? 'N/A' }}
                                             @endif
-                                        </tbody>
-                                    </table>    
-                                    
-                                    
-                                    
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            Menampilkan {{ $permintaan->firstItem() }} - {{ $permintaan->lastItem() }} dari {{ $permintaan->total() }} data
-                                        </div>
-                                        <div>
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination justify-content-end">
-                                                    {{ $permintaan->links('vendor.pagination.bootstrap-4-green') }}
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-
+                                        </td>
+                                        <td>
+                                            @if($item->STATUS_PERMINTAAN == 'Ditolak')
+                                                <b class="text-danger">{{ $item->JUMLAH_INSENTIF ? 'Rp' . number_format($item->JUMLAH_INSENTIF, 2, ',', '.') : 'N/A' }}</b>
+                                            @else
+                                                {{ $item->JUMLAH_INSENTIF ? 'Rp' . number_format($item->JUMLAH_INSENTIF, 2, ',', '.') : 'N/A' }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($item->STATUS_PERMINTAAN == 'Menunggu')
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal-{{ $item->ID_PERMINTAAN }}">
+                                                    Batalkan
+                                                </button>
+                                            @elseif($item->STATUS_PERMINTAAN == 'Disetujui' || $item->STATUS_PERMINTAAN == 'Ditolak')
+                                                <button class="btn btn-secondary" disabled>Batalkan</button>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="7">Tidak ada riwayat permintaan</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>    
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            Menampilkan {{ $permintaan->firstItem() }} - {{ $permintaan->lastItem() }} dari {{ $permintaan->total() }} data
+                        </div>
+                        <div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-end">
+                                    {{ $permintaan->links('vendor.pagination.bootstrap-4-green') }}
+                                </ul>
+                            </nav>
                         </div>
                     </div>
-                </div>
-            </main>
+                </div>                                
+            </div>
+
         </div>
     </div>
 
-    
+    <!-- Modals -->
+    @if(isset($permintaan) && $permintaan->isNotEmpty())
+        @foreach($permintaan as $index => $item)
+            <div class="modal fade" id="confirmModal-{{ $item->ID_PERMINTAAN }}" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Konfirmasi Pembatalan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin membatalkan permintaan ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <form action="{{ route('hapus_permintaan', $item->ID_PERMINTAAN) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Batalkan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS dan dependensi Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="js/RiwayatPengguna.js"></script>
 </body>
 </html>

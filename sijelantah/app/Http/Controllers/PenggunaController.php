@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Session\Session;
-// use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Pengguna;
 use Illuminate\Support\Carbon;

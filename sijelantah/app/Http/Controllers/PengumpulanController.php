@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Models\Pengumpulan;

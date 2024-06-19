@@ -47,7 +47,7 @@
             <nav class="navbar navbar-expand-lg d-flex px-4 py-2">   
                 <div class="container-fluid">
                     {{-- <h3 class="mb-3 mt-3">Halo, {{Session::get('pengguna')['NAMA']}}</h3> --}}
-                    <h3 class="mb-3 mt-3">Halo, {{$nama}}</h3>
+                    <h3 class="mb-3 mt-3">Halo, {{session('pengguna')['NAMA']}}</h3>
                     <a href="{{ route('logoutuser.submit') }}" class="login-button mb-3 mt-3">Keluar</a>
                 </div>  
             </nav>
