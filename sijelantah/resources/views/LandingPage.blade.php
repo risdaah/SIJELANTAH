@@ -80,7 +80,7 @@
             <p>
               Kami membantu untuk membersihkan limbah minyak di daerah Sidoarjo
             </p>
-            <a href="/Masuk" class="btn-kmp btn-lg">KUMPULKAN</a>
+            <a href="/PenggunaPage" class="btn-kmp btn-lg">KUMPULKAN</a>
             <a href="/Gabung" class="btn-gbg btn-lg">GABUNG</a>
           </div>
           <div class="col-md-6">

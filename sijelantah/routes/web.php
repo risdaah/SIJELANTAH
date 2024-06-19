@@ -51,7 +51,7 @@ Route::get('/set-new-password/{pengguna}', [ForgotPasswordController::class, 'se
 Route::post('/update-password/{pengguna}', [ForgotPasswordController::class, 'updatePassword'])->name('update-password');
 
 
-Route::middleware(['checksessionAdmin'])->group(function () {
+Route::group(['middleware' => 'checksessionAdmin'], function () {
     Route::get('/AdminPage', function () {
         return view('AdminPage');
     });
@@ -95,7 +95,7 @@ Route::middleware(['checksessionAdmin'])->group(function () {
     Route::get('/generate-excel', [ExcelController::class, 'generateEXCELByMonthYear']);
 });
 
-Route::middleware(['checksession'])->group(function () {
+Route::group(['middleware' => 'checksession'], function () {
 
     Route::get('/PenggunaPage', function () {
         return view('PenggunaPage');

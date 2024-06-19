@@ -55,34 +55,34 @@ class PenggunaController extends Controller
         return redirect('/Masuk');
     }
 
-    public function edit_customer($id)
-    {
-        $customer = Pengguna::findOrFail($id);
-        return view('EditCustomerPage', compact('customer'));
-    }
+    // public function edit_customer($id)
+    // {
+    //     $customer = Pengguna::findOrFail($id);
+    //     return view('EditCustomerPage', compact('customer'));
+    // }
 
-    public function update_customer(Request $request, $id)
-    {
-        // Mengambil data customer berdasarkan ID
-        $customer = Pengguna::findOrFail($id);
+    // public function update_customer(Request $request, $id)
+    // {
+    //     // Mengambil data customer berdasarkan ID
+    //     $customer = Pengguna::findOrFail($id);
 
-        // Memperbarui data customer
-        $customer->update([
-            'NAMA' => $request->input('NAMA'),
-            'EMAIL' => $request->input('EMAIL'),
-            'NO_TELP' => $request->input('NO_TELP'),
-            'ALAMAT' => $request->input('ALAMAT'),
-        ]);
+    //     // Memperbarui data customer
+    //     $customer->update([
+    //         'NAMA' => $request->input('NAMA'),
+    //         'EMAIL' => $request->input('EMAIL'),
+    //         'NO_TELP' => $request->input('NO_TELP'),
+    //         'ALAMAT' => $request->input('ALAMAT'),
+    //     ]);
 
-        // Mengambil semua data customer untuk ditampilkan di CustomerPage
-        $customers = Pengguna::all();
+    //     // Mengambil semua data customer untuk ditampilkan di CustomerPage
+    //     $customers = Pengguna::all();
 
-        // Mengarahkan langsung ke view CustomerPage dengan data customers dan pesan sukses
-        return view('CustomerPage', [
-            'customers' => $customers,
-            'success' => 'Customer updated successfully.'
-        ]);
-    }
+    //     // Mengarahkan langsung ke view CustomerPage dengan data customers dan pesan sukses
+    //     return view('CustomerPage', [
+    //         'customers' => $customers,
+    //         'success' => 'Customer updated successfully.'
+    //     ]);
+    // }
 
     public function hapus_pengguna($id)
     {
@@ -144,6 +144,7 @@ class PenggunaController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+        // return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+        return view('ProfilPenggunaPage');
     }
 }
